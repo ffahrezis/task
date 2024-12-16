@@ -5,22 +5,18 @@ use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user/login');
 });
 
-
-
-
 Route::get('user/register', function () {
-    return view('user.register');
+    return view('user/register');
 })->name('user.register');
 
 Route::post('user/save', [UsersController::class, 'save'])->name('user.save');
 
 Route::get('user/login', function () {
-    return view('user.login');
+    return view('user/login');
 })->name('user.login');
-
 
 Route::post('user/check', [UsersController::class, 'check'])->name('user.check');
 
@@ -30,9 +26,6 @@ Route::get('user/logout', [UsersController::class, 'logout'])->name('user.logout
 
 Route::get('user/addtasks', [UsersController::class, 'addtasks'])->name('user.addtasks');
 Route::post('/tasks', [TasksController::class, 'store'])->name('tasks.store');
-
-
-
 
 Route::get('/tasks/{id}', [TasksController::class, 'show'])->name('tasks.show');
 Route::get('/tasks/edit/{id}', [TasksController::class, 'edit'])->name('tasks.edit');
