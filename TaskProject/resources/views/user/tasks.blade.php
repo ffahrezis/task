@@ -125,21 +125,23 @@
         border-radius: 50%;
     }
 
-    input:checked + .slider {
+    input:checked+.slider {
         background-color: #2d8a6b;
     }
 
-    input:checked + .slider:before {
+    input:checked+.slider:before {
         transform: translateX(26px);
     }
 
-    .form-control, .form-select {
+    .form-control,
+    .form-select {
         background-color: var(--card-bg);
         color: var(--text-color);
         border-color: var(--table-border);
     }
 
-    .form-control:focus, .form-select:focus {
+    .form-control:focus,
+    .form-select:focus {
         background-color: var(--card-bg);
         color: var(--text-color);
     }
@@ -258,8 +260,8 @@
                                 <tr>
                                     <td>
                                         @if($task->image)
-                                            <img src="{{ asset('storage/' . $task->image) }}" alt="{{ $task->title }}"
-                                                class="img-thumbnail" style="max-width: 100px; height: auto; cursor: pointer"
+                                            <img src="{{Storage::url($task->image)}}" alt="{{ $task->title }}" class="img-thumbnail"
+                                                style="max-width: 100px; height: auto; cursor: pointer"
                                                 onclick="window.open(this.src)">
                                         @else
                                             <span class="text-muted">No Image</span>
@@ -270,13 +272,15 @@
                                     <td>{{ \Carbon\Carbon::parse($task->due_date)->format('d M Y') }}</td>
                                     <td class="task-status">{{ $task->completed ? 'Completed  ' : 'Pending  ' }}</td>
                                     <td>
-                                        <a href="{{ route('tasks.show', ['id' => $task->id]) }}"
-                                            class="btn btn-sm btn-info" title="View">
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcng9IjIiIHJ5PSIyIi8+PHBhdGggZD0iTTcgMTJoMTAiLz48cGF0aCBkPSJNNyA4aDEwIi8+PHBhdGggZD0iTTcgMTZoMTAiLz48L3N2Zz4=" alt="View" width="16" height="16" style="filter: invert(1);">
+                                        <a href="{{ route('tasks.show', ['id' => $task->id]) }}" class="btn btn-sm btn-info"
+                                            title="View">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgcng9IjIiIHJ5PSIyIi8+PHBhdGggZD0iTTcgMTJoMTAiLz48cGF0aCBkPSJNNyA4aDEwIi8+PHBhdGggZD0iTTcgMTZoMTAiLz48L3N2Zz4="
+                                                alt="View" width="16" height="16" style="filter: invert(1);">
                                         </a>
-                                        <a href="{{ route('tasks.edit', $task->id) }}" 
-                                            class="btn btn-sm btn-warning" title="Edit">
-                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xNyAzYTIuODI4IDIuODI4IDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVMMTcgM3oiLz48L3N2Zz4=" alt="Edit" width="16" height="16" style="filter: invert(1);">
+                                        <a href="{{ route('tasks.edit', $task->id) }}" class="btn btn-sm btn-warning"
+                                            title="Edit">
+                                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0xNyAzYTIuODI4IDIuODI4IDAgMSAxIDQgNEw3LjUgMjAuNSAyIDIybDEuNS01LjVMMTcgM3oiLz48L3N2Zz4="
+                                                alt="Edit" width="16" height="16" style="filter: invert(1);">
                                         </a>
 
                                         <!-- Delete Button -->
@@ -285,7 +289,8 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger" title="Delete">
-                                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0zIDZoMThNMTkgNnYxNGEyIDIgMCAwIDEtMiAySDdhMiAyIDAgMCAxLTItMlY2bTMtM2g2TTEwIDExdjZNMTQgMTF2NiIvPjwvc3ZnPg==" alt="Delete" width="16" height="16" style="filter: invert(1);">
+                                                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwYXRoIGQ9Ik0zIDZoMThNMTkgNnYxNGEyIDIgMCAwIDEtMiAySDdhMiAyIDAgMCAxLTItMlY2bTMtM2g2TTEwIDExdjZNMTQgMTF2NiIvPjwvc3ZnPg=="
+                                                    alt="Delete" width="16" height="16" style="filter: invert(1);">
                                             </button>
                                         </form>
                                     </td>
@@ -361,7 +366,7 @@
         themeToggle.checked = savedTheme === 'dark';
 
         // Theme switch handler
-        themeToggle.addEventListener('change', function() {
+        themeToggle.addEventListener('change', function () {
             if (this.checked) {
                 html.setAttribute('data-theme', 'dark');
                 localStorage.setItem('theme', 'dark');
